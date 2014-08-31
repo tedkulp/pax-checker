@@ -1,0 +1,41 @@
+{
+  "name": "pax-checker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "mongoose": "~3.8.14",
+    "mongoose-times": "~0.1.0",
+    "cheerio": "~0.17.0",
+    "request": "~2.39.0",
+    "transmission": "~0.4.0",
+    "cron": "~1.0.4",
+    "bluebird": "~2.2.2",
+    "express": "~4.8.7",
+    "socket.io": "~1.0.6",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.7",
+    "event-stream": "~3.1.7",
+    "gulp-sourcemaps": "~1.1.0",
+    "main-bower-files": "~1.0.2",
+    "gulp-concat": "~2.3.4",
+    "gulp-debug": "~1.0.0",
+    "gulp-uglify": "~0.3.1",
+    "gulp-nodemon": "~1.0.4",
+    "gulp-filter": "~1.0.0",
+    "gulp-bower": "0.0.6",
+    "gulp-ng-annotate": "~0.3.0",
+    "mocha": "~1.21.4",
+    "chai": "~1.9.1",
+    "gulp-mocha": "~1.0.0",
+    "coffee-script": "~1.8.0",
+    "sinon": "~1.10.3"
+  }
+}

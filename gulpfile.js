@@ -53,7 +53,7 @@ gulp.task('bower', function() {
 });
 
 gulp.task('startServer', function() {
-    nodemon({ script: './index.js', ext: 'html js', watch: ['./lib/', 'index.js'] })
+    nodemon({ script: './index.coffee', ext: 'html js coffee', watch: ['./lib/', 'index.coffee'] })
     // .on('change', function() { ['dosomething'] })
     .on('restart', function () {
         console.log('restarted!')
@@ -76,7 +76,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(frontEndJsFiles, {debounceDelay: 2000}, ['js']);
+    gulp.watch(frontEndJsFiles, {debounceDelay: 2000}, ['js', 'coffee']);
 });
 
 gulp.task('default', ['bower', 'js', 'watch', 'startServer']);

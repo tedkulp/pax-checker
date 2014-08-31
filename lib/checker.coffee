@@ -33,7 +33,6 @@ class Checker
           reject(err)
 
   getHttpData: (url) ->
-    console.log 'here?'
     new Promise (resolve, reject) ->
       request url, (err, resp, html) ->
         if err

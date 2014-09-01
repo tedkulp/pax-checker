@@ -60,8 +60,14 @@ app.post '/auth/signup', (req, res) ->
     res.status(200).end()
 
 app.get '/api/v1/profile', ensureAuthenticated, (req, res) ->
-  console.log req
-  res.status(200).end()
+  User.findOne { _id: req.user }, (err, user) ->
+    res.send(user)
+
+app.put '/api/v1/profile', ensureAuthenticated, (req, res) ->
+  User.findOne { _id: req.user }, (err, user) ->
+    user.set req.body
+    user.save (err) ->
+      res.status(200).end()
 
 io.on 'connection', (socket) ->
   console.log 'a user connected'

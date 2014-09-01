@@ -3,6 +3,81 @@
     <div class="center-form panel">
       <div class="panel-body">
         <h2 class="text-center">Profile</h2>
+
+        <div class="form-group col-md-12">
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.firstName.$invalid && signupForm.firstName.$dirty }">
+            <input class="form-control input-lg" type="text" name="firstName" ng-model="user.firstName" placeholder="First Name" required autofocus>
+            <span class="ion-person form-control-feedback"></span>
+            <div class="help-block text-danger" ng-if="signupForm.firstName.$dirty" ng-messages="signupForm.firstName.$error">
+              <div ng-message="required">You must enter your first name.</div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.lastName.$invalid && signupForm.lastName.$dirty }">
+            <input class="form-control input-lg" type="text" name="lastName" ng-model="user.lastName" placeholder="Last Name" required autofocus>
+            <span class="ion-person form-control-feedback"></span>
+            <div class="help-block text-danger" ng-if="signupForm.lastName.$dirty" ng-messages="signupForm.lastName.$error">
+              <div ng-message="required">You must enter your last name.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <h3>Event Notifications</h3>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="user.checkPrime">
+              PAX Prime
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="user.checkEast">
+              PAX East
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="user.checkSouth">
+              PAX South
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="user.checkAus">
+              PAX Australia
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <h3>Notification Preferences</h3>
+
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Address/Number</th>
+                <th style="width: 15%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="notification in user.notifications">
+                <td>{{ notification.type }}</td>
+                <td>{{ notification.address }}</td>
+                <td><input type="button" value="Delete" class="btn btn-danger" ng-click="deleteNotification(notification)" ng-confirm-click="Are you sure you want to delete?" /></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <input type="button" class="btn btn-primary pull-right" value="Add Notification" ng-click="addNotification()"></input>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-block btn-success" ng-click="save()">Save Preferences</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">Add Notification</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group has-feedback">
+            <label for="type">Notification Type</label>
+            <select class="form-control input-lg" name="type" ng-model="notification.type" required autofocus>
+              <option value="sms">SMS</option>
+              <option value="email">Email</option>
+            </select>
+          </div>
+
+          <div class="form-group has-feedback" ng-show="notification.type === 'sms'">
+            <label for="type">Phone Number</label>
+            <input class="form-control input-lg" type="text" name="address" ng-model="notification.address" placeholder="+1 2155551212" required>
+          </div>
+ 
+          <div class="form-group has-feedback" ng-show="notification.type === 'email'">
+            <label for="type">Email Address</label>
+            <input class="form-control input-lg" type="text" name="address" ng-model="notification.address" placeholder="test@test.com" required>
+          </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-inverse" ng-click="$hide()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="saveNotification(notification)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

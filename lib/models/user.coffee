@@ -1,6 +1,11 @@
 database   = require '../database'
 timestamps = require 'mongoose-times'
 bcrypt     = require 'bcryptjs'
+hidden     = require('mongoose-hidden')()
+
+notificationSchema = new database.Schema
+  type: String
+  address: String
 
 userSchema = new database.Schema
   email:
@@ -10,8 +15,14 @@ userSchema = new database.Schema
   password:
     type: String
     select: true
+    hide: true
   firstName: String
   lastName: String
+  checkPrime: Boolean
+  checkEast: Boolean
+  checkSouth: Boolean
+  checkAus: Boolean
+  notifications: [notificationSchema]
 
 userSchema.pre 'save', (next) ->
   user = this
@@ -29,5 +40,6 @@ userSchema.methods.comparePassword = (password, done) ->
     done err, isMatch
 
 userSchema.plugin timestamps, { created: "createdAt", lastUpdated: "updatedAt" }
+userSchema.plugin hidden
 
 exports = module.exports = database.model 'User', userSchema

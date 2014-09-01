@@ -21,7 +21,8 @@
     "bcryptjs": "~2.0.2",
     "jwt-simple": "~0.2.0",
     "body-parser": "~1.6.7",
-    "moment": "~2.8.2"
+    "moment": "~2.8.2",
+    "mongoose-hidden": "~0.4.1"
   },
   "devDependencies": {
     "gulp": "~3.8.7",

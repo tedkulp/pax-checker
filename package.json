@@ -13,12 +13,15 @@
     "mongoose-times": "~0.1.0",
     "cheerio": "~0.17.0",
     "request": "~2.39.0",
-    "transmission": "~0.4.0",
     "cron": "~1.0.4",
     "bluebird": "~2.2.2",
     "express": "~4.8.7",
     "socket.io": "~1.0.6",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "bcryptjs": "~2.0.2",
+    "jwt-simple": "~0.2.0",
+    "body-parser": "~1.6.7",
+    "moment": "~2.8.2"
   },
   "devDependencies": {
     "gulp": "~3.8.7",
@@ -36,6 +39,7 @@
     "chai": "~1.9.1",
     "gulp-mocha": "~1.0.0",
     "coffee-script": "~1.8.0",
-    "sinon": "~1.10.3"
+    "sinon": "~1.10.3",
+    "gulp-coffee": "~2.1.2"
   }
 }

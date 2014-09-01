@@ -9,12 +9,14 @@ var gulp           = require('gulp'),
     es             = require('event-stream'),
     ngAnnotate     = require('gulp-ng-annotate'),
     nodemon        = require('gulp-nodemon'),
-    mocha          = require('gulp-mocha');
+    mocha          = require('gulp-mocha'),
+    coffee         = require('gulp-coffee');
 
 require('coffee-script/register')
 
 var frontEndJsFiles = [
-    './public/js/app/app.js',
+    './public/js/app/app.coffee',
+    './public/js/app/**/*.coffee',
     './public/js/app/**/*.js',
 ];
 
@@ -62,6 +64,7 @@ gulp.task('startServer', function() {
 
 gulp.task('js', function () {
     gulp.src(frontEndJsFiles)
+    .pipe(coffee())
     .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
         .pipe(ngAnnotate())
@@ -76,7 +79,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(frontEndJsFiles, {debounceDelay: 2000}, ['js', 'coffee']);
+    gulp.watch(frontEndJsFiles, {debounceDelay: 2000}, ['js']);
 });
 
 gulp.task('default', ['bower', 'js', 'watch', 'startServer']);

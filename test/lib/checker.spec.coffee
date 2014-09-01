@@ -28,6 +28,8 @@ describe 'checker', ->
         else if url == Checker::EAST
           fs.readFile './test/resources/east.json', 'utf8', (err, data) ->
             resolve(data)
+        else
+          resolve('')
 
   describe 'getLatestId', ->
     it 'gets the latest id for the given URL', (reallyDone) ->

@@ -37,8 +37,9 @@ createToken = (req, user) ->
 
   jwt.encode payload, config.TOKEN_SECRET
 
-app.get '/', (req, res) ->
-  res.sendfile('index.html')
+# app.get '/', (req, res) ->
+#   console.log req
+#   res.sendfile('index.html')
 
 app.post '/auth/login', (req, res) ->
   User.findOne { email: req.body.email }, '+password', (err, user) ->
@@ -57,6 +58,10 @@ app.post '/auth/signup', (req, res) ->
   user.password = req.body.password
   user.save (err) ->
     res.status(200).end()
+
+app.get '/api/v1/profile', ensureAuthenticated, (req, res) ->
+  console.log req
+  res.status(200).end()
 
 io.on 'connection', (socket) ->
   console.log 'a user connected'

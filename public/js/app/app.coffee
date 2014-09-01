@@ -17,3 +17,8 @@ angular.module 'app', ['ngRoute', 'ngResource', 'ui.router', 'appDep', 'satelliz
         url: '/logout'
         template: null
         controller: 'LogoutCtrl'
+      .state 'profile',
+        url: '/profile'
+        templateUrl: '/js/app/views/profile.html'
+        controller: 'ProfileCtrl'
+        protected: true

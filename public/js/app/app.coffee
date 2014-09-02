@@ -27,4 +27,3 @@ angular.module 'app', ['ngRoute', 'ngResource', 'ui.router', 'appDep', 'satelliz
         protected: true
       .state 'home',
         url: '/'
-        templateUrl: '/js/app/views/home.html'

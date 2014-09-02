@@ -36,7 +36,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavbarCtrl">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/"><i class="ion-ios7-pulse-strong"></i> Satellizer</a>
+        <a class="navbar-brand" href="/"><i class="ion-ios7-pulse-strong"></i> PAX Checker</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
@@ -51,16 +51,66 @@
       </ul>
     </div>
 
+    <div id="alerts-container"></div>
+
+    <div ui-view>
+      <div class="jumbotron">
+        <div class="container">
+          <h1>PAX Checker</h1>
+
+          <p>Getting tickets for PAX events is hard. Let's take away just a slight
+          bit of the pain, shall we?</p>
+
+          <p>
+            <a class="btn btn-primary btn-lg" role="button" href="/signup">Sign Up »</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Sign Up</h2>
+
+            <p>
+              Sign Up using an Email Address. Or, just use Facebook or Twitter.
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <h2>Set Notifications</h2>
+
+            <p>
+              Setup your email and SMS preferences. You can set multiples of each
+              and be sure you won't miss anything. You can select which PAX events
+              you're interested in, or select them all!
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <h2>Get Notified</h2>
+
+            <p>
+              As soon as tickets are available for sale, we'll notify you via your
+              selected methods. It will include a link to the ordering site so you
+              can get them as quickly as possible!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
     <div class="container">
-      <div class="row">
-        <div class="col-md-12" id="alerts-container"></div>
-      </div>
-
-      <div class="row">
-        <div ui-view class="col-md-12"></div>
-      </div>
-    </div><!-- /.container -->
-
+      <footer>
+        <p>
+          &copy; 2014 <a href="http://shiftrefresh.net">Shift Refresh</a>. We are
+          not affiliated, associated, authorized, endorsed by, or in any way
+          officially connected with PAX or Penny Arcade.
+        </p>
+      </footer>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

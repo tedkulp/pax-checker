@@ -1,4 +1,4 @@
-angular.module 'appDep', ['mgcrea.ngStrap']
+angular.module 'appDep', ['ngAnimate', 'mgcrea.ngStrap']
 
 angular.module 'app', ['ngRoute', 'ngResource', 'ui.router', 'appDep', 'satellizer']
   .config ($stateProvider, $urlRouterProvider, $authProvider) ->
@@ -17,8 +17,12 @@ angular.module 'app', ['ngRoute', 'ngResource', 'ui.router', 'appDep', 'satelliz
         url: '/logout'
         template: null
         controller: 'LogoutCtrl'
+        protected: true
       .state 'profile',
         url: '/profile'
         templateUrl: '/js/app/views/profile.html'
         controller: 'ProfileCtrl'
         protected: true
+      .state 'home',
+        url: '/'
+        templateUrl: '/js/app/views/home.html'

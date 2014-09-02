@@ -17,12 +17,12 @@
 
           <div class="form-group has-feedback" ng-show="notification.type === 'sms'">
             <label for="type">Phone Number</label>
-            <input class="form-control input-lg" type="text" name="address" ng-model="notification.address" placeholder="+1 2155551212" required>
+            <intl-tel class="form-control input-lg" type="text" name="address" ng-model="notification.address" required></intl-tel>
           </div>
  
           <div class="form-group has-feedback" ng-show="notification.type === 'email'">
             <label for="type">Email Address</label>
-            <input class="form-control input-lg" type="text" name="address" ng-model="notification.address" placeholder="test@test.com" required>
+            <input class="form-control input-lg" type="text" name="address" ng-model="notification.address" placeholder="test@test.com" required></input>
           </div>
        </form>
       </div>

@@ -11,6 +11,7 @@ User       = require './lib/models/user'
 
 app.use express.static('public')
 app.use '/css/fonts', express.static('public/fonts/ext')
+app.use '/css/img', express.static('public/images/ext')
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({ extended: true })

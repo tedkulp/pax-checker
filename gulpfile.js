@@ -26,6 +26,7 @@ gulp.task('bower', function() {
             cssFilter  = filter('**/*.{css,css.map}'),
             lessFilter = filter('**/*.less'),
             fontFilter = filter('**/*.{ttf,eot,svg,woff}'),
+            imgFilter  = filter('**/*.{png,jpeg,jpg,gif}'),
             gulpFiles  = gulpBowerFiles();
 
         //js files
@@ -50,7 +51,12 @@ gulp.task('bower', function() {
         //fonts
             .pipe(fontFilter)
             .pipe(gulp.dest('./public/fonts/ext'))
-            .pipe(fontFilter.restore());
+            .pipe(fontFilter.restore())
+
+        //images
+            .pipe(imgFilter)
+            .pipe(gulp.dest('./public/images/ext'))
+            .pipe(imgFilter.restore());
     });
 });
 

@@ -7,14 +7,12 @@ angular.module 'appDep'
       .then ->
         $alert
           content: 'You have successfully logged in'
-          animation: 'am-fade-and-scale'
           type: 'info'
           container: '#alerts-container'
           duration: 3
       .catch (response) ->
         $alert
           content: response.data.message
-          animation: 'am-fade-and-slide-top'
           type: 'danger'
           container: '#alerts-container'
           duration: 3

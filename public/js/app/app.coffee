@@ -1,7 +1,9 @@
 angular.module 'appDep', ['ngAnimate', 'mgcrea.ngStrap']
 
 angular.module 'app', ['ngRoute', 'ngResource', 'ui.router', 'appDep', 'satellizer']
-  .config ($stateProvider, $urlRouterProvider, $authProvider) ->
+  .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
+    $locationProvider.html5Mode(true)
+
     $urlRouterProvider.otherwise '/'
 
     $stateProvider

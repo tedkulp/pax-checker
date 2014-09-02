@@ -9,6 +9,13 @@ class Checker
   SOUTH: "http://api.showclix.com/Seller/19042/events"
   AUS:   "http://api.showclix.com/Seller/15374/events"
 
+  getUrls: ->
+    PRIME: Checker::PRIME
+    DEV:   Checker::DEV
+    EAST:  Checker::EAST
+    SOUTH: Checker::SOUTH
+    AUS:   Checker::AUS
+
   getLatestId: (url) ->
     new Promise (resolve, reject) =>
       @getHttpData(url)

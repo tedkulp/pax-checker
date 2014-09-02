@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
+config   = require '../config'
 
-mongoose.connect 'mongodb://localhost/paxchecker_dev'
+mongoose.connect config.MONGO_URL
 
 exports = module.exports = mongoose

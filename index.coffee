@@ -5,13 +5,36 @@ app        = express()
 http       = require('http').Server(app)
 io         = require('socket.io')(http)
 moment     = require 'moment'
+_          = require 'lodash'
+Promise    = require 'bluebird'
 
+log        = require './lib/logger'
 config     = require './config'
 User       = require './lib/models/user'
+Checker    = require './lib/checker'
+
+checker = new Checker()
+
+currentIds =
+  PRIME: 0
+  DEV: 0
+  EAST: 0
+  SOUTH: 0
+  AUS: 0
+
+# Set all the current ids so we know what to
+# compare to
+Promise.all(_.map checker.getUrls(), (value, key) ->
+  checker.getLatestId(value)
+    .then (id) ->
+      currentIds[key] = id
+).then ->
+  log.info 'CurrentIds', currentIds
 
 app.use express.static('public')
 app.use '/css/fonts', express.static('public/fonts/ext')
 app.use '/css/img', express.static('public/images/ext')
+app.use require('morgan')('combined', { 'stream': log.stream })
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({ extended: true })
@@ -71,7 +94,7 @@ app.put '/api/v1/profile', ensureAuthenticated, (req, res) ->
       res.status(200).end()
 
 io.on 'connection', (socket) ->
-  console.log 'a user connected'
+  log.debug 'a user connected'
 
 http.listen 3000, ->
-  console.log 'listening on *:3000'
+  log.info 'listening on *:3000'

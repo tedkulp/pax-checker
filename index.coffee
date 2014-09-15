@@ -31,10 +31,10 @@ Promise.all(_.map checker.getUrls(), (value, key) ->
 ).then ->
   log.info 'CurrentIds', currentIds
 
+app.use require('morgan')('combined', { 'stream': log.stream })
 app.use express.static('public')
 app.use '/css/fonts', express.static('public/fonts/ext')
 app.use '/css/img', express.static('public/images/ext')
-app.use require('morgan')('combined', { 'stream': log.stream })
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({ extended: true })

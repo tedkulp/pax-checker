@@ -93,6 +93,14 @@ app.put '/api/v1/profile', ensureAuthenticated, (req, res) ->
     user.save (err) ->
       res.status(200).end()
 
+# Because of pushstate
+_.each ['/profile', '/signup', '/login'], (path) ->
+  app.get path, (request, response) ->
+    response.sendfile './public/index.html'
+
+app.get '/profile', (request, response) ->
+  response.sendfile './public/index.html'
+
 io.on 'connection', (socket) ->
   log.debug 'a user connected'
 

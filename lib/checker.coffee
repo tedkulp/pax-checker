@@ -35,7 +35,7 @@ class Checker
     new Promise (resolve, reject) =>
       @getLatestId(url)
         .then (id) ->
-          resolve(id > currentId, id)
+          resolve([id > currentId, id])
         .catch (err) ->
           reject(err)
 

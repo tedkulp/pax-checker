@@ -22,14 +22,28 @@ currentIds =
   SOUTH: 0
   AUS: 0
 
+updateCheck = ->
+  Promise.all(_.map checker.getUrls(), (value, key) ->
+    # console.log value, currentIds[key], key
+    checker.hasUpdate(value, currentIds[key])
+      .then (result, newId) ->
+        if result
+          log.info key, 'has an update... let all subs know'
+          currentIds[key] = newId
+  ).finally ->
+    _.delay(updateCheck, 60 * 1000)
+
 # Set all the current ids so we know what to
 # compare to
 Promise.all(_.map checker.getUrls(), (value, key) ->
   checker.getLatestId(value)
     .then (id) ->
+      # console.log key, typeof key
       currentIds[key] = id
 ).then ->
   log.info 'CurrentIds', currentIds
+  # currentIds['EAST'] = 1500
+  updateCheck()
 
 app.use require('morgan')('combined', { 'stream': log.stream })
 app.use express.static('public')

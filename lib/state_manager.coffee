@@ -2,6 +2,7 @@ Promise    = require 'bluebird'
 _          = require 'lodash'
 
 Checker    = require './checker'
+Notifier   = require './notifier'
 
 class StateManager
   constructor: (log) ->
@@ -31,7 +32,8 @@ class StateManager
       @checker.hasUpdate(value, @currentIds[key])
         .spread (result, newId) =>
           if result
-            @log.info key, 'has an update... let all subs know', result, newId
+            @log.debug key, 'has an update... let all subs know', result, newId
+            new Notifier(key, @log)
             @currentIds[key] = newId
           else
             @log.debug 'No updates'

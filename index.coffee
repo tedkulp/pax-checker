@@ -88,5 +88,6 @@ app.get '/profile', (request, response) ->
 io.on 'connection', (socket) ->
   log.debug 'a user connected'
 
-http.listen 3000, ->
-  log.info 'listening on *:3000'
+port = process.env.PORT || 3000
+http.listen port, ->
+  log.info 'listening on *:' + port

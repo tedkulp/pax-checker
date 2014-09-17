@@ -33,7 +33,7 @@ class StateManager
         .spread (result, newId) =>
           if result
             @log.debug key, 'has an update... let all subs know', result, newId
-            new Notifier(key, @log)
+            new Notifier(key, newId, @log)
             @currentIds[key] = newId
           else
             @log.debug 'No updates'

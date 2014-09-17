@@ -1,6 +1,7 @@
 Promise  = require 'bluebird'
 config   = require '../config'
 sendgrid = require('sendgrid')(config.SENDGRID_USERNAME, config.SENDGRID_PASSWORD)
+request  = require 'request'
 _        = require 'lodash'
 
 User     = require './models/user'
@@ -51,6 +52,20 @@ Pax Checker
 
   sendSMS: (notification, user, event, eventId) ->
     @log.debug 'Sending SMS to:', notification.toJSON()
+
+    if config.TELAPI_TOKEN and config.TELAPI_TOKEN != ''
+      data =
+        uri: 'https://heroku.telapi.com/send_sms'
+        form:
+          To: notification.address
+          Body: "PAX #{event} registrations are now open. #{@checker.generateUrl(eventId)}"
+          Token: config.TELAPI_TOKEN
+
+      request.post data, (err, resp, html) ->
+        if err
+          @log.error 'Error sending email: ', err.toString()
+        else
+          @log.debug "Sent SMS via TelAPI:", html
 
   eventCheckField: (event) ->
     event = event.toLowerCase()

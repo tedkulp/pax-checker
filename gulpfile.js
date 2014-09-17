@@ -88,4 +88,5 @@ gulp.task('watch', function() {
     gulp.watch(frontEndJsFiles, {debounceDelay: 2000}, ['js']);
 });
 
+gulp.task('heroku:production', ['bower', 'js']);
 gulp.task('default', ['bower', 'js', 'watch', 'startServer']);

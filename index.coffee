@@ -7,6 +7,7 @@ io         = require('socket.io')(http)
 moment     = require 'moment'
 _          = require 'lodash'
 Promise    = require 'bluebird'
+request    = require 'request'
 
 log        = require './lib/logger'
 config     = require './config'
@@ -28,7 +29,7 @@ ensureAuthenticated = (req, res, next) ->
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header' })
 
   token = req.headers.authorization.split(' ')[1]
-  payload = jwt.decode(token, config.TOKEN_SECRET);
+  payload = jwt.decode(token, config.TOKEN_SECRET)
 
   if payload.exp <= Date.now()
     return res.status(401).send({ message: 'Token has expired' })
@@ -85,8 +86,26 @@ _.each ['/profile', '/signup', '/login'], (path) ->
 app.get '/profile', (request, response) ->
   response.sendfile './public/index.html'
 
+app.get '/ping', (request, response) ->
+  log.info "PONG"
+  response.send 'OK'
+
 io.on 'connection', (socket) ->
   log.debug 'a user connected'
+
+pinger = ->
+  port = process.env.PORT || 3000
+  service_url = (process.env.SERVICE_URL || "http://localhost:#{port}") + "/ping"
+  request service_url, (err, res, html) ->
+    if err
+      log.error err
+
+setupPinger = ->
+  setInterval ->
+    pinger()
+  , 60 * 15 * 1000 # 15 min
+
+setupPinger()
 
 port = process.env.PORT || 3000
 http.listen port, ->

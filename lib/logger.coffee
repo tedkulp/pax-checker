@@ -12,7 +12,7 @@ logger = new winston.Logger
     #   maxFiles: 5,
     #   colorize: false
     new winston.transports.Console
-      level: 'debug',
+      level: if process.env.DEBUG then 'debug' else 'info',
       handleExceptions: true,
       json: false,
       colorize: true

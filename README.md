@@ -29,4 +29,4 @@ heroku config:add SERVICE_URL="http://$(heroku domains | grep "herokuapp.com")"
 git push heroku master
 ```
 
-  * Navigation to your new site, register, and set notifications
+  * Navigate to your new site, register, and set notifications
